@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace calculator_2023
 {
-    public partial class Form1 : Form
+    public partial class Calculator2023 : Form
     {
-        public Form1()
+        public Calculator2023()
         {
             InitializeComponent();
+        }
+
+        private void lblResult_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

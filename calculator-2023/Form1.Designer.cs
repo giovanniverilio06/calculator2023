@@ -1,6 +1,6 @@
 ﻿namespace calculator_2023
 {
-    partial class Form1
+    partial class Calculator2023
     {
         /// <summary>
         /// Variabile di progettazione necessaria.
@@ -28,13 +28,50 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.lblResult = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.SuspendLayout();
+            // 
+            // lblResult
+            // 
+            this.lblResult.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblResult.Font = new System.Drawing.Font("Segoe UI Semibold", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResult.Location = new System.Drawing.Point(0, 54);
+            this.lblResult.Name = "lblResult";
+            this.lblResult.Size = new System.Drawing.Size(320, 80);
+            this.lblResult.TabIndex = 0;
+            this.lblResult.Text = "0";
+            this.lblResult.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblResult.Click += new System.EventHandler(this.lblResult_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(320, 54);
+            this.panel1.TabIndex = 1;
+            // 
+            // Calculator2023
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(320, 477);
+            this.Controls.Add(this.lblResult);
+            this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
+            this.Name = "Calculator2023";
+            this.ShowIcon = false;
+            this.Text = "Calcolatrice";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Label lblResult;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
