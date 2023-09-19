@@ -36,7 +36,7 @@
             // 
             this.lblResult.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblResult.Font = new System.Drawing.Font("Segoe UI Semibold", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblResult.Location = new System.Drawing.Point(0, 54);
+            this.lblResult.Location = new System.Drawing.Point(0, 30);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(320, 80);
             this.lblResult.TabIndex = 0;
@@ -49,7 +49,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(320, 54);
+            this.panel1.Size = new System.Drawing.Size(320, 30);
             this.panel1.TabIndex = 1;
             // 
             // Calculator2023
@@ -64,6 +64,7 @@
             this.Name = "Calculator2023";
             this.ShowIcon = false;
             this.Text = "Calcolatrice";
+            this.Load += new System.EventHandler(this.Calculator2023_Load);
             this.ResumeLayout(false);
 
         }
