@@ -42,6 +42,7 @@
             this.lblResult.TabIndex = 0;
             this.lblResult.Text = "0";
             this.lblResult.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblResult.TextChanged += new System.EventHandler(this.lblResult_TextChanged);
             this.lblResult.Click += new System.EventHandler(this.lblResult_Click);
             // 
             // panel1
@@ -65,6 +66,7 @@
             this.ShowIcon = false;
             this.Text = "Calcolatrice";
             this.Load += new System.EventHandler(this.Calculator2023_Load);
+            this.TextChanged += new System.EventHandler(this.lblResult_TextChanged);
             this.ResumeLayout(false);
 
         }
