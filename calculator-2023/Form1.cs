@@ -41,9 +41,9 @@ namespace calculator_2023
         }
 
         private btnStruct[,] buttons =
-        {
-            { new btnStruct('%'), new btnStruct('\u0152',SymbolType.ClearEntry), new btnStruct('C',SymbolType.ClearAll), new btnStruct('\u232B',SymbolType.Backspace) },
-            { new btnStruct('\u215F',SymbolType.Specialoperator), new btnStruct('\u00B2'), new btnStruct('\u221A'), new btnStruct('\u00F7',SymbolType.Operator) },
+{
+            { new btnStruct('%',SymbolType.Specialoperator), new btnStruct('\u0152',SymbolType.ClearEntry), new btnStruct('C',SymbolType.ClearAll), new btnStruct('\u232B',SymbolType.Backspace) },
+            { new btnStruct('\u215F',SymbolType.Specialoperator), new btnStruct('\u00B2',SymbolType.Specialoperator), new btnStruct('\u221A',SymbolType.Specialoperator), new btnStruct('\u00F7',SymbolType.Operator) },
             { new btnStruct('7',SymbolType.Number, true), new btnStruct('8',SymbolType.Number, true), new btnStruct('9',SymbolType.Number, true), new btnStruct('\u00D7',SymbolType.Operator) },
             { new btnStruct('4',SymbolType.Number, true), new btnStruct('5',SymbolType.Number, true), new btnStruct('6',SymbolType.Number, true), new btnStruct('-',SymbolType.Operator) },
             { new btnStruct('1',SymbolType.Number, true), new btnStruct('2',SymbolType.Number, true), new btnStruct('3',SymbolType.Number, true), new btnStruct('+',SymbolType.Operator) },
@@ -116,15 +116,11 @@ namespace calculator_2023
                     lblResult.Text += clickedButton.Text;
                     break;
                 case SymbolType.Operator:
-                case SymbolType.Specialoperator:
                     if (lastButtonClicked.Type != SymbolType.Operator || clickedButtonStruct.Content == '=')
-                    {
                         ManageOperator(clickedButtonStruct);
-                    }
-                    else
-                    {
-                        lastOperator = clickedButtonStruct.Content;
-                    }
+                    break;
+                case SymbolType.Specialoperator:
+                    ManageSpecialOperator(clickedButtonStruct);
                     break;
                 case SymbolType.DecimalPoint:
                     if (lblResult.Text.IndexOf(",") == -1)
@@ -136,6 +132,10 @@ namespace calculator_2023
                             lblResult.Text = "-" + lblResult.Text;
                         else
                             lblResult.Text = lblResult.Text.Substring(1);
+                    if (lastButtonClicked.Type == SymbolType.Operator)
+                    {
+                        operand1 = -operand1;
+                    }
                     break;
                 case SymbolType.Backspace:
                     if (lastButtonClicked.Type != SymbolType.Operator)
@@ -146,34 +146,46 @@ namespace calculator_2023
                     }
                     break;
                 case SymbolType.ClearAll:
-                    operand1 = 0;
-                    operand2 = 0;
-                    result = 0;
-                    lastOperator = ' ';
-                    lblResult.Text = "0";
+                    clearAll();
+                    break;
+                case SymbolType.ClearEntry:
+                    if (lastButtonClicked.Content == '=')
+                        clearAll();
+                    else
+                        lblResult.Text = "0";
                     break;
                 case SymbolType.Undefined:
                     break;
                 default:
                     break;
             }
-            if (clickedButtonStruct.Type != SymbolType.Backspace)
+            if (clickedButtonStruct.Type != SymbolType.Backspace && clickedButtonStruct.Type != SymbolType.PlusMminusSign)
                 lastButtonClicked = clickedButtonStruct;
         }
+        private void ManageSpecialOperator(btnStruct clickedButtonStruct)
+        {
+            operand2 = decimal.Parse(lblResult.Text);
+            switch (clickedButtonStruct.Content)
+            {
+                case '%':
+                    result = operand1 * operand2 / 100;
+                    break;
+                case '\u215F': //1/x
+                    result = 1 / operand2;
+                    break;
+                case '\u00B2': //x^2
+                    result = operand2 * operand2;
+                    break;
+                case '\u221A': //sqr(x)
+                    result = (decimal)Math.Sqrt((double)operand2);
+                    break;
+            }
+            lblResult.Text = result.ToString();
+        }
+
         private void ManageOperator(btnStruct clickedButtonStruct)
         {
-            if(clickedButtonStruct.Type ==SymbolType.Specialoperator)
-            {
-                switch(clickedButtonStruct.Content)
-                {
-                    case '\u215f':
-                        result = 1 / operand2;
-                        break;
-                        default :
-                        break;
-                }
-            }
-            if (lastOperator == ' ' )
+            if (lastOperator == ' ')
             {
                 operand1 = decimal.Parse(lblResult.Text);
                 if (clickedButtonStruct.Content != '=') lastOperator = clickedButtonStruct.Content;
@@ -195,8 +207,7 @@ namespace calculator_2023
                     case '\u00D7':
                         result = operand1 * operand2;
                         break;
-                    
-                    
+
 
                 }
                 operand1 = result;
@@ -208,6 +219,11 @@ namespace calculator_2023
                 }
                 lblResult.Text = result.ToString();
             }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         private void lblResult_TextChanged(object sender, EventArgs e)
@@ -235,6 +251,14 @@ namespace calculator_2023
 
 
         }
-    
-}
+        private void clearAll()
+        {
+            operand1 = 0;
+            operand2 = 0;
+            result = 0;
+            lastOperator = ' ';
+            lblResult.Text = "0";
+            lblOp.Text = "";
+        }
+    }
 }

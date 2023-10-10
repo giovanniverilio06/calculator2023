@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.lblResult = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblOp = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // lblResult
@@ -45,13 +45,14 @@
             this.lblResult.TextChanged += new System.EventHandler(this.lblResult_TextChanged);
             this.lblResult.Click += new System.EventHandler(this.lblResult_Click);
             // 
-            // panel1
+            // lblOp
             // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(320, 30);
-            this.panel1.TabIndex = 1;
+            this.lblOp.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblOp.Location = new System.Drawing.Point(0, 0);
+            this.lblOp.Name = "lblOp";
+            this.lblOp.Size = new System.Drawing.Size(320, 30);
+            this.lblOp.TabIndex = 1;
+            this.lblOp.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // Calculator2023
             // 
@@ -59,7 +60,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(320, 477);
             this.Controls.Add(this.lblResult);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.lblOp);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "Calculator2023";
@@ -74,7 +75,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblResult;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel lblOp;
     }
 }
 
