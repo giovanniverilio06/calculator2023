@@ -188,12 +188,20 @@ namespace calculator_2023
             if (lastOperator == ' ')
             {
                 operand1 = decimal.Parse(lblResult.Text);
-                if (clickedButtonStruct.Content != '=') lastOperator = clickedButtonStruct.Content;
+                if (clickedButtonStruct.Content != '=')
+                {
+                    lastOperator = clickedButtonStruct.Content;
+                    label1.Text = operand1.ToString() + lastOperator.ToString();
+                }
             }
             else
             {
-                if (lastButtonClicked.Content != '=') operand2 = decimal.Parse(lblResult.Text);
-                switch (lastOperator)
+                if (lastButtonClicked.Content != '=')
+                {
+                    operand2 = decimal.Parse(lblResult.Text);
+                    label1.Text += operand2.ToString();
+                }
+                    switch (lastOperator)
                 {
                     case '+':
                         result = operand1 + operand2;
@@ -216,12 +224,19 @@ namespace calculator_2023
                     lastOperator = clickedButtonStruct.Content;
                     if (lastButtonClicked.Content == '=')
                         operand2 = 0;
+                   
                 }
+                label1.Text +="=";
                 lblResult.Text = result.ToString();
             }
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
